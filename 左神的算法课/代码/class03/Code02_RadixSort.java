@@ -32,18 +32,22 @@ public class Code02_RadixSort {
 		int[] bucket = new int[end - begin + 1];
 		for (int d = 1; d <= digit; d++) {
 			int[] count = new int[radix];
+
 			for (i = begin; i <= end; i++) {
 				j = getDigit(arr[i], d);
 				count[j]++;
 			}
+
 			for (i = 1; i < radix; i++) {
 				count[i] = count[i] + count[i - 1];
 			}
+
 			for (i = end; i >= begin; i--) {
 				j = getDigit(arr[i], d);
 				bucket[count[j] - 1] = arr[i];
 				count[j]--;
 			}
+
 			for (i = begin, j = 0; i <= end; i++, j++) {
 				arr[i] = bucket[j];
 			}

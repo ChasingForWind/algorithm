@@ -1,50 +1,35 @@
-package 左神的算法课.代码.基础入门班第二课代码;
+package 自己的总结与分类.排序.计数排序;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Code03_HeapSort {
-
-    public static void heapSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
+public class Simple_1 {
+    public static void countSort(int[] arr) {
+        //代码鲁棒性
+        if (arr == null || arr.length < 2) return;
+        //寻找最大值
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
-            heapInsert(arr, i);
-        }
-        int size = arr.length;
-        swap(arr, 0, --size);
-        while (size > 0) {
-            heapify(arr, 0, size);
-            swap(arr, 0, --size);
-        }
-    }
-
-    public static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
-            swap(arr, index, (index - 1) / 2);
-            index = (index - 1) / 2;
-        }
-    }
-
-    public static void heapify(int[] arr, int index, int size) {
-        int left = index * 2 + 1;
-        while (left < size) {
-            int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
-            largest = arr[largest] > arr[index] ? largest : index;
-            if (largest == index) {
-                break;
+            if (arr[i] > max) {
+                max = arr[i];
             }
-            swap(arr, largest, index);
-            index = largest;
-            left = index * 2 + 1;
+        }
+        //创建一个最大值加一的数组
+        int[] bucket = new int[max + 1];
+        //遍历原数组并以原数轴数字值为下标，在新数组中存储个数
+        for (int j = 0; j < arr.length; j++) {
+            bucket[arr[j]]++;
+        }
+        //遍历新数组，如果出现数字就按个数向原数组中添加
+        int i = 0;
+        for (int k = 0; k < bucket.length; k++) {
+           while (bucket[k]-->0){
+               arr[i++] = k;
+           }
+
         }
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
 
     // for test
     public static void comparator(int[] arr) {
@@ -55,7 +40,7 @@ public class Code03_HeapSort {
     public static int[] generateRandomArray(int maxSize, int maxValue) {
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+            arr[i] = (int) ((maxValue + 1) * Math.random());
         }
         return arr;
     }
@@ -106,15 +91,17 @@ public class Code03_HeapSort {
     public static void main(String[] args) {
         int testTime = 500000;
         int maxSize = 100;
-        int maxValue = 100;
+        int maxValue = 150;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            heapSort(arr1);
+            countSort(arr1);
             comparator(arr2);
             if (!isEqual(arr1, arr2)) {
                 succeed = false;
+                printArray(arr1);
+                printArray(arr2);
                 break;
             }
         }
@@ -122,8 +109,8 @@ public class Code03_HeapSort {
 
         int[] arr = generateRandomArray(maxSize, maxValue);
         printArray(arr);
-        heapSort(arr);
+        countSort(arr);
         printArray(arr);
-    }
 
+    }
 }

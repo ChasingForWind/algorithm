@@ -1,44 +1,38 @@
-package 左神的算法课.代码.基础入门班第二课代码;
+package 自己的总结与分类.排序.快排;
 
 import java.util.Arrays;
 
-public class Code03_HeapSort {
+public class Simple_2 {
+    public static void quickSort(int[] array) {
+        if (array == null || array.length < 2) return;
+        quickSort(array, 0, array.length - 1);
+    }
 
-    public static void heapSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
-        for (int i = 0; i < arr.length; i++) {
-            heapInsert(arr, i);
-        }
-        int size = arr.length;
-        swap(arr, 0, --size);
-        while (size > 0) {
-            heapify(arr, 0, size);
-            swap(arr, 0, --size);
+    private static void quickSort(int[] array, int l, int r) {
+        if (l < r) {
+            swap(array, l + (int) Math.random() * (r - l + 1), r);
+            int[] p = partition(array, l, r);
+            quickSort(array, l, p[0] - 1);
+            quickSort(array, p[1] + 1, r);
         }
     }
 
-    public static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
-            swap(arr, index, (index - 1) / 2);
-            index = (index - 1) / 2;
-        }
-    }
-
-    public static void heapify(int[] arr, int index, int size) {
-        int left = index * 2 + 1;
-        while (left < size) {
-            int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
-            largest = arr[largest] > arr[index] ? largest : index;
-            if (largest == index) {
-                break;
+    private static int[] partition(int[] array, int l, int r) {
+        int less = l - 1;
+        int more = r;
+        while (l < more) {
+            if (array[l] < array[r]) {
+                swap(array, ++less, l++);
+            } else if (array[l] > array[r]) {
+                swap(array, l, --more);
+            } else {
+                l++;
             }
-            swap(arr, largest, index);
-            index = largest;
-            left = index * 2 + 1;
         }
+        swap(array, more, r);
+        return new int[]{less + 1, more};
     }
+
 
     public static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
@@ -111,10 +105,12 @@ public class Code03_HeapSort {
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            heapSort(arr1);
+            quickSort(arr1);
             comparator(arr2);
             if (!isEqual(arr1, arr2)) {
                 succeed = false;
+                printArray(arr1);
+                printArray(arr2);
                 break;
             }
         }
@@ -122,8 +118,10 @@ public class Code03_HeapSort {
 
         int[] arr = generateRandomArray(maxSize, maxValue);
         printArray(arr);
-        heapSort(arr);
+        quickSort(arr);
         printArray(arr);
+
     }
+
 
 }

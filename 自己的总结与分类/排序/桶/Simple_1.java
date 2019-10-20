@@ -1,50 +1,67 @@
-package 左神的算法课.代码.基础入门班第二课代码;
+package 自己的总结与分类.排序.桶;
 
 import java.util.Arrays;
 
-public class Code03_HeapSort {
+public class Simple_1 {
+    //检查代码的鲁棒性
+    public static void radixSort(int[] arr) {
+        if (arr == null || arr.length < 2) return;
+        radixSort(arr, 0, arr.length - 1, maxbits(arr));
+    }
 
-    public static void heapSort(int[] arr) {
-        if (arr == null || arr.length < 2) {
-            return;
-        }
+    //找到最大的数的位数
+    public static int maxbits(int[] arr) {
+        int max = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
-            heapInsert(arr, i);
-        }
-        int size = arr.length;
-        swap(arr, 0, --size);
-        while (size > 0) {
-            heapify(arr, 0, size);
-            swap(arr, 0, --size);
-        }
-    }
-
-    public static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
-            swap(arr, index, (index - 1) / 2);
-            index = (index - 1) / 2;
-        }
-    }
-
-    public static void heapify(int[] arr, int index, int size) {
-        int left = index * 2 + 1;
-        while (left < size) {
-            int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
-            largest = arr[largest] > arr[index] ? largest : index;
-            if (largest == index) {
-                break;
+            if (arr[i] > max) {
+                max = arr[i];
             }
-            swap(arr, largest, index);
-            index = largest;
-            left = index * 2 + 1;
+        }
+        int res = 0;
+        while (max != 0) {
+            max /= 10;
+            res++;
+        }
+        return res;
+    }
+
+    public static void radixSort(int[] arr, int begin, int end, int digit) {
+        //定义位数为10个
+        final int radix = 10;
+        //定义i和j
+        int i = 0, j = 0;
+        //定义桶的个数
+        int[] bucket = new int[end - begin + 1];
+        //开始循环，一共进出桶多少次循环数按照一共用多少位来计算
+        for (int d = 1; d <= digit; d++) {
+            //新建数轴
+            int[] count = new int[radix];
+            //遍历数轴记录每一位上的数字的个数
+            for (i = begin; i <= end; i++) {
+                j = getDigit(arr[i], d);
+                count[j]++;
+            }
+            //用累加的方式确定0到i位置上的数字有多少个
+            for (i = 1; i < radix; i++) {
+                count[i] = count[i - 1] + count[i];
+            }
+            //重后往前遍历确定出桶顺序
+            for (i = end; i >= begin; i--) {
+                j = getDigit(arr[i], d);
+                bucket[count[j] - 1] = arr[i];
+                count[j]--;
+            }
+            //将值赋给原始数组
+            for (i = begin, j = 0; i <= end; i++, j++) {
+                arr[i] = bucket[j];
+            }
         }
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
+    public static int getDigit(int x, int d) {
+        return ((x / ((int) Math.pow(10, d - 1))) % 10);
     }
+
 
     // for test
     public static void comparator(int[] arr) {
@@ -55,7 +72,7 @@ public class Code03_HeapSort {
     public static int[] generateRandomArray(int maxSize, int maxValue) {
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+            arr[i] = (int) ((maxValue + 1) * Math.random());
         }
         return arr;
     }
@@ -106,15 +123,17 @@ public class Code03_HeapSort {
     public static void main(String[] args) {
         int testTime = 500000;
         int maxSize = 100;
-        int maxValue = 100;
+        int maxValue = 100000;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            heapSort(arr1);
+            radixSort(arr1);
             comparator(arr2);
             if (!isEqual(arr1, arr2)) {
                 succeed = false;
+                printArray(arr1);
+                printArray(arr2);
                 break;
             }
         }
@@ -122,8 +141,8 @@ public class Code03_HeapSort {
 
         int[] arr = generateRandomArray(maxSize, maxValue);
         printArray(arr);
-        heapSort(arr);
+        radixSort(arr);
         printArray(arr);
-    }
 
+    }
 }
