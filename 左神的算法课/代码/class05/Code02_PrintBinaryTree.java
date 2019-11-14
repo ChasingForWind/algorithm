@@ -42,7 +42,7 @@ public class Code02_PrintBinaryTree {
 	}
 
 	public static void main(String[] args) {
-		Node head = new Node(1);
+		/*Node head = new Node(1);
 		head.left = new Node(-222222222);
 		head.right = new Node(3);
 		head.left.left = new Node(Integer.MIN_VALUE);
@@ -66,8 +66,8 @@ public class Code02_PrintBinaryTree {
 		head.left.left = new Node(1);
 		head.right.left = new Node(1);
 		head.right.right = new Node(1);
-		head.left.left.right = new Node(1);
-		printTree(head);
+		head.left.left.right = new Node(1);*/
+		//printTree(head);
 
 	}
 

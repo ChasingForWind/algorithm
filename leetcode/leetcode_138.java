@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.HashMap;
+/*
 
 public class leetcode_138 {
     class Solution {
@@ -21,3 +22,4 @@ public class leetcode_138 {
         }
     }
 }
+*/
