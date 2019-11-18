@@ -2,7 +2,9 @@ package leetcode;
 
 public class test2 {
     public static void main(String[] args) {
-        String[] s = {"1", "2", "3"};
+        String s = "a";
+        String substring = s.substring(1);
+        System.out.println(s.charAt(0));
 //        TreeNodeBuilder;
        /*
          {"$id":"1","neighbors":[
