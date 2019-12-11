@@ -1,4 +1,4 @@
-package leetcode;
+/*package leetcode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,4 +28,4 @@ public class leetcode_39_test {
             findList(candidates,target-candidates[i],list);
         }
     }
-}
+}*/
