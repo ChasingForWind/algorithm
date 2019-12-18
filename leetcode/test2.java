@@ -1,19 +1,14 @@
 package leetcode;
 
+import java.util.ArrayList;
+
 public class test2 {
     public static void main(String[] args) {
-        String s = "a";
-        String substring = s.substring(1);
-        System.out.println(s.charAt(0));
-//        TreeNodeBuilder;
-       /*
-         {"$id":"1","neighbors":[
-         {"$id":"2","neighbors":[
-         {"$ref":"1"},{"$id":"3","neighbors":[
-         {"$ref":"2"},{"$id":"4","neighbors":[
-         {"$ref":"3"},{"$ref":"1"}],"val":4}],"val":3}],"val":2},{"$ref":"4"}],"val":1}
-*/
-
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(2);
+        Integer integer = integers.get(1);
+        System.out.println(integer);
 
     }
 }

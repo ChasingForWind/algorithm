@@ -1,9 +1,14 @@
-/*
 package leetcode;
 
 public class normalTest {
     public static void main(String[] args) {
-        int[] array = {5,1,4,null,null,3,6};
+
+        char[] array = {'a','b','c'};
+        String s = array.toString();
+        String s1 = String.valueOf(array);
+        System.out.println(s);
+        System.out.println(s1);
+
+
     }
 }
-*/
