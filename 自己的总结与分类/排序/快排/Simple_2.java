@@ -1,4 +1,4 @@
-package 自己的总结与分类.排序.快排;
+package 排序.快排;
 
 import java.util.Arrays;
 
