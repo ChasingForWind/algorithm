@@ -2,6 +2,7 @@ import java.util.Stack;
 
 public class 面试题39 {
     public class Solutiosn {
+        //投票算法
         public int MoreThanHalfNum_Solution(int [] array) {
             if (array.length==0||array==null) return 0;
             int temp=array[0];

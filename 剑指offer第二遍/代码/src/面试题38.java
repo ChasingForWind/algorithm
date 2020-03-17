@@ -42,7 +42,6 @@ public class 面试题38 {
                     book[i]=0;
                 }
             }
-            return;
         }
     }
 }

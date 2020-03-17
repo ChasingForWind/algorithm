@@ -28,14 +28,14 @@ public class Simple_3 {
                 int less = l-1;
                 int index = l;
                 int num = array[r];
-                while (index<l){
+                while (index<r){
                     if (array[index]<=num){
                         swap(array,++less,index++);
                     }else {
                         index++;
                     }
                 }
-                swap(array,l,less+1);
+                swap(array,r,less+1);
                 return less+1;
             }
             //写一个swap函数

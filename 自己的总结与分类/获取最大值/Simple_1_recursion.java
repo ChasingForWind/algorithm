@@ -1,4 +1,4 @@
-package 自己的总结与分类.获取最大值;
+package 获取最大值;
 
 public class Simple_1_recursion {
     public static int get_max(int[] array){

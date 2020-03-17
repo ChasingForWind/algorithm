@@ -16,7 +16,7 @@ public class 面试题11 {
                     left++;
                 }
             }
-            return array[mid+1];
+            return array[left];
         }
     }
 }

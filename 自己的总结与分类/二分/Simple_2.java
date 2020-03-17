@@ -1,4 +1,4 @@
-package 自己的总结与分类.二分;
+package 二分;
 
 
 /*剑指offer第53题*/

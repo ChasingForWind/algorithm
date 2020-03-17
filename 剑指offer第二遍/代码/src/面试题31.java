@@ -4,7 +4,7 @@ import java.util.Stack;
 public class 面试题31 {
     public class Solution {
         public boolean IsPopOrder(int [] pushA,int [] popA) {
-            if(popA.length!=popA.length||pushA.length<=0||popA.length<=0||popA==null||popA==null) return false;
+            if(pushA.length <= 0 || popA.length <= 0) return false;
 
             Stack<Integer> s = new Stack<>();
             int index = 0;

@@ -27,7 +27,8 @@ public class 面试题41 {
                 count++;
             }
         }
-        public Double GetMedian() {
+        public Double
+        GetMedian() {
             if (count%2==0){
                 return (double) (maxHeap.peek() + minHeap.peek()) /2;
             }else {

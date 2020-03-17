@@ -26,7 +26,7 @@ public class 快排 {
             int less = l-1;
             int index = l;
             int num = array[r];
-            while (index<r){
+            while (index <r){
                 if (array[index]<=num){
                     swap(array,++less,index++);
                 }else {

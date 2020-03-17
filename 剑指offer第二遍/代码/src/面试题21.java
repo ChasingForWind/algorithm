@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 /*次方法可行，但是相对位置会发生改变*/
+//就是快排的思想
 public class 面试题21 {
     public class Solution {
         public void reOrderArray(int [] array) {

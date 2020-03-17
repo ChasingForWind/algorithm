@@ -14,7 +14,7 @@ public class 面试题19 {
             //if (pattern[index2]=='.') return matchCore(str,pattern,index1+1,index2+1);
             //如果遇到index2的下一个是“*”，则要么"*"前面的字符与当前相匹配，要么不匹配
             if (index2 + 1 < pattern.length && pattern[index2 + 1] == '*'){
-                //相互匹配
+                //相互匹配 
                 if ((index1 != str.length && pattern[index2] == str[index1]) || (pattern[index2] == '.' && index1 != str.length)){
                     return matchCore(str, pattern, index1+1, index2)||matchCore(str, pattern, index1+1, index2+2)||matchCore(str, pattern, index1, index2+2);
                 }else {//如果不相匹配

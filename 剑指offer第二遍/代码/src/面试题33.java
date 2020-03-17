@@ -7,12 +7,12 @@ public class 面试题33 {
         }
         public boolean Help(int[] squence,int start, int end){
             if (start>=end) return true;
-            //从前往后
+            //从后往前
             int i=end;
             while (squence[i-1]>squence[end]&&i>start){
                 i--;
             }
-            //从后往前
+            //从前往后
             int j= start;
             for (;j<i-1;j++){
                 if (squence[j]>squence[end]) return false;

@@ -25,7 +25,6 @@ public class 面试题34 {
             if (root.left!=null) FindPathCore(root.left,newTarget,array);
             if (root.right!=null) FindPathCore(root.right,newTarget,array);
             array.remove(array.size()-1);
-            return;
         }
     }
 }

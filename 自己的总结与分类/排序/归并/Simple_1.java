@@ -1,4 +1,4 @@
-package 自己的总结与分类.排序.归并;
+package 排序.归并;
 
 import java.util.Arrays;
 
